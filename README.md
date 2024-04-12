@@ -19,3 +19,12 @@ cargo run --example demo
 ## Credits
 egui_gl_glfw is based on [egui_glfw_gl](https://github.com/cohaereo/egui_glfw_gl) which is based on
 [egui_sdl2_gl](https://github.com/ArjunNair/egui_sdl2_gl), created by [ArjunNair](https://github.com/ArjunNair)
+
+## Change Log
+
+### Version 0.1.2
+
+Thanks to [organizedgrime](https://github.com/organizedgrime) for contributing these changes.
+
+* Bump egui to version 0.27
+* Expose wayland features from internal crates

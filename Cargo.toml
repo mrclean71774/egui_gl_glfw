@@ -16,9 +16,9 @@ keywords = ["glfw", "opengl", "egui", "gui", "gamedev"]
 include = ["**/*.rs", "Cargo.toml"]
 
 [dependencies]
-gl = "0.14"
-glfw = "0.55"
-egui = "0.26"
+gl = { version = "0.14" }
+glfw = { version = "0.55", default-features = false }
+egui = { version = "0.27" }
 
 [dependencies.clipboard]
 package = "cli-clipboard"
@@ -27,3 +27,5 @@ optional = true
 
 [features]
 default = ["clipboard"]
+wayland = ["glfw/glfw-sys", "glfw/wayland"]
+rwh-06 = ["glfw/raw-window-handle-v0-6"]

@@ -1,6 +1,6 @@
 [package]
 name = "egui_gl_glfw"
-version = "0.1.2"
+version = "0.1.3"
 authors = [
     "Michael H. Phillips <mrclean71774@gmail.com>",
     "cohaereo <lucasteal@protonmail.com>",
@@ -17,8 +17,8 @@ include = ["**/*.rs", "Cargo.toml"]
 
 [dependencies]
 gl = { version = "0.14" }
-glfw = { version = "0.55", default-features = false }
-egui = { version = "0.27" }
+glfw = { version = "0.57.0", default-features = false }
+egui = { version = "0.27.2" }
 
 [dependencies.clipboard]
 package = "cli-clipboard"
@@ -26,6 +26,9 @@ version = "0.4"
 optional = true
 
 [features]
-default = ["clipboard"]
-wayland = ["glfw/glfw-sys", "glfw/wayland"]
+default = ["clipboard", "rwh-06"]
+clipboard = ["dep:clipboard"]
+glfw-sys = ["glfw/glfw-sys"]
+wayland = ["glfw-sys", "glfw/wayland"]
+rwh-05 = ["glfw/raw-window-handle-v0-5"]
 rwh-06 = ["glfw/raw-window-handle-v0-6"]

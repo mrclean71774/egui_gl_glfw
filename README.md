@@ -4,9 +4,7 @@
 
 ![Example screenshot](/media/screenshot.png)
 
-[egui_glfw_gl](https://github.com/cohaereo/egui_glfw_gl) is archived so I created this repository and updated
-all the dependencies to the latest version as of 2/15/2024. I only made changes to the code where it was
-broken from the dependency updates.
+[egui_glfw_gl](https://github.com/cohaereo/egui_glfw_gl) is archived so I created this repository and made changes to the code where it was broken from the dependency updates.
 
 This is a backend implementation for [Egui](https://github.com/emilk/egui) that can be used with Rust bindings for [GLFW](https://github.com/PistonDevelopers/glfw-rs) and [OpenGL](https://github.com/brendanzab/gl-rs).
 
@@ -28,3 +26,9 @@ Thanks to [organizedgrime](https://github.com/organizedgrime) for contributing t
 
 * Bump egui to version 0.27
 * Expose wayland features from internal crates
+
+### Version 0.1.3
+
+* Bump egui to 0.27.2
+* Bump glfw to 0.57.0
+* Some feature changes due to glfw changes

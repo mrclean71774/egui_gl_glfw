@@ -8,7 +8,7 @@ use std::{mem, ptr, str};
 
 use std::ffi::CString;
 
-#[allow(unconditional_panic)]
+#[allow(unconditional_panic, clippy::out_of_bounds_indexing)]
 const fn illegal_null_in_string() {
     [][0]
 }
@@ -27,7 +27,7 @@ pub const fn validate_cstr_contents(bytes: &[u8]) {
 macro_rules! cstr {
     ( $s:literal ) => {{
         validate_cstr_contents($s.as_bytes());
-        unsafe { std::mem::transmute::<_, &std::ffi::CStr>(concat!($s, "\0")) }
+        unsafe { std::mem::transmute::<&str, &std::ffi::CStr>(concat!($s, "\0")) }
     }};
 }
 
@@ -167,7 +167,7 @@ impl Triangle {
             gl::BufferData(
                 gl::ARRAY_BUFFER,
                 (VERTEX_DATA.len() * mem::size_of::<GLfloat>()) as GLsizeiptr,
-                mem::transmute(&VERTEX_DATA[0]),
+                &VERTEX_DATA[0] as *const f32 as *const std::ffi::c_void,
                 gl::STATIC_DRAW,
             );
         }

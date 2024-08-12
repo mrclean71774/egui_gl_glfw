@@ -32,3 +32,8 @@ Thanks to [organizedgrime](https://github.com/organizedgrime) for contributing t
 * Bump egui to 0.27.2
 * Bump glfw to 0.57.0
 * Some feature changes due to glfw changes
+
+### Version 0.1.4
+
+* Bump egui to 0.28.1
+* Bump glfw to 0.58.0

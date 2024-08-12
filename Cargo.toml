@@ -1,6 +1,6 @@
 [package]
 name = "egui_gl_glfw"
-version = "0.1.3"
+version = "0.1.4"
 authors = [
     "Michael H. Phillips <mrclean71774@gmail.com>",
     "cohaereo <lucasteal@protonmail.com>",
@@ -17,8 +17,8 @@ include = ["**/*.rs", "Cargo.toml"]
 
 [dependencies]
 gl = { version = "0.14" }
-glfw = { version = "0.57.0", default-features = false }
-egui = { version = "0.27.2" }
+glfw = { version = "0.58.0", default-features = false }
+egui = { version = "0.28.1" }
 
 [dependencies.clipboard]
 package = "cli-clipboard"

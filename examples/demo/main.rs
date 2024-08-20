@@ -1,9 +1,11 @@
-use egui_gl_glfw as egui_backend;
-
-use std::time::Instant;
-
-use egui_backend::egui::{vec2, Color32, Image, Pos2, Rect};
-use egui_gl_glfw::glfw::Context;
+use {
+    egui_backend::{
+        egui::{vec2, Color32, Image, Pos2, Rect},
+        glfw::Context,
+    },
+    egui_gl_glfw as egui_backend,
+    std::time::Instant,
+};
 
 const SCREEN_WIDTH: u32 = 800;
 const SCREEN_HEIGHT: u32 = 600;

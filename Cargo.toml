@@ -1,6 +1,6 @@
 [package]
 name = "egui_gl_glfw"
-version = "0.1.4"
+version = "0.1.5"
 authors = [
     "Michael H. Phillips <mrclean71774@gmail.com>",
     "cohaereo <lucasteal@protonmail.com>",
@@ -18,7 +18,7 @@ include = ["**/*.rs", "Cargo.toml"]
 [dependencies]
 gl = { version = "0.14" }
 glfw = { version = "0.58.0", default-features = false }
-egui = { version = "0.28.1" }
+egui = { version = "0.28.1", default-features = false }
 
 [dependencies.clipboard]
 package = "cli-clipboard"
@@ -26,9 +26,38 @@ version = "0.4"
 optional = true
 
 [features]
-default = ["clipboard", "rwh-06"]
+default = [
+    "clipboard",
+    "glfw-sys",
+    "glfw-raw-window-handle-v0-6",
+    "egui-default_fonts"
+]
 clipboard = ["dep:clipboard"]
+
+# glfw features
+glfw-default = ["glfw/default"]
+glfw-all = ["glfw/all"]
+glfw-with-window-handle-v0-5 = ["glfw/with-window-handle-v0-5"]
+glfw-wayland = ["glfw/wayland"]
 glfw-sys = ["glfw/glfw-sys"]
-wayland = ["glfw-sys", "glfw/wayland"]
-rwh-05 = ["glfw/raw-window-handle-v0-5"]
-rwh-06 = ["glfw/raw-window-handle-v0-6"]
+glfw-raw-window-handle-v0-5 = ["glfw/raw-window-handle-v0-5"]
+glfw-raw-window-handle-v0-6 = ["glfw/raw-window-handle-v0-6"]
+
+# egui features
+egui-bytemuck = ["egui/bytemuck"]
+egui-callstack = ["egui/callstack"]
+egui-cint = ["egui/cint"]
+egui-color-hex = ["egui/color-hex"]
+egui-deadlock_detection =["egui/deadlock_detection"]
+egui-default_fonts = ["egui/default_fonts"]
+egui-log = ["egui/log"]
+egui-mint = ["egui/mint"]
+egui-persistence = ["egui/persistence"]
+egui-puffin = ["egui/puffin"]
+egui-rayon = ["egui/rayon"]
+egui-serde = ["egui/serde"]
+
+[[example]]
+name = "demo"
+path = "examples/demo/main.rs"
+required-features = ["egui-default_fonts"]

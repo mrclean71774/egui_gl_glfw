@@ -1,5 +1,4 @@
 #![warn(clippy::all)]
-#![allow(clippy::single_match)]
 
 // Re-export dependencies.
 pub use egui;

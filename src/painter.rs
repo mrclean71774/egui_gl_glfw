@@ -1,5 +1,3 @@
-extern crate gl;
-
 use egui::{
     emath::Rect,
     epaint::{Mesh, Primitive},

@@ -77,7 +77,7 @@ fn main() {
 
     while !window.should_close() {
         egui_input_state.input.time = Some(start_time.elapsed().as_secs_f64());
-        egui_ctx.begin_frame(egui_input_state.input.take());
+        egui_ctx.begin_pass(egui_input_state.input.take());
         egui_input_state.pixels_per_point = native_pixels_per_point;
 
         unsafe {
@@ -141,7 +141,7 @@ fn main() {
             shapes,
             pixels_per_point,
             viewport_output: _,
-        } = egui_ctx.end_frame();
+        } = egui_ctx.end_pass();
 
         //Handle cut, copy text from egui
         if !platform_output.copied_text.is_empty() {

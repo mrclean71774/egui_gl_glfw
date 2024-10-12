@@ -41,3 +41,8 @@ Thanks to [organizedgrime](https://github.com/organizedgrime) for contributing t
 ### Version 0.1.5
 
 * Add features to control most egui and glfw features
+
+### Version 0.1.6
+
+* Improved mouse button handling, Thanks to [JLi69](https://github.com/JLi69)
+

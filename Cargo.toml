@@ -1,6 +1,6 @@
 [package]
 name = "egui_gl_glfw"
-version = "0.1.7"
+version = "0.1.8"
 authors = [
     "Michael H. Phillips <mrclean71774@gmail.com>",
     "cohaereo <lucasteal@protonmail.com>",
@@ -42,7 +42,6 @@ glfw-wayland = ["glfw/wayland"]
 glfw-sys = ["glfw/glfw-sys"]
 glfw-raw-window-handle-v0-5 = ["glfw/raw-window-handle-v0-5"]
 glfw-raw-window-handle-v0-6 = ["glfw/raw-window-handle-v0-6"]
-glfw-vulkan = ["glfw/vulkan"]
 glfw-serde = ["glfw/serde"]
 
 # egui features

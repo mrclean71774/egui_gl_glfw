@@ -53,3 +53,7 @@ Thanks to [organizedgrime](https://github.com/organizedgrime) for contributing t
 ### Version 0.1.7
 
 * Bump glfw to 0.59.0
+
+### Version 0.1.8
+
+* Remove glfw-vulkan feature

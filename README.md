@@ -1,4 +1,5 @@
 # egui_gl_glfw
+
 [![Latest version](https://img.shields.io/crates/v/egui_gl_glfw.svg)](https://crates.io/crates/egui_gl_glfw)
 ![MIT](https://img.shields.io/badge/license-MIT-blue.svg)
 
@@ -9,12 +10,15 @@
 This is a backend implementation for [Egui](https://github.com/emilk/egui) that can be used with Rust bindings for [GLFW](https://github.com/PistonDevelopers/glfw-rs) and [OpenGL](https://github.com/brendanzab/gl-rs).
 
 ## Example
+
 I have made an example to demonstrate the usage of egui_gl_glfw. To run the example, run the following:
+
 ```
 cargo run --example demo
 ```
 
 ## Credits
+
 egui_gl_glfw is based on [egui_glfw_gl](https://github.com/cohaereo/egui_glfw_gl) which is based on
 [egui_sdl2_gl](https://github.com/ArjunNair/egui_sdl2_gl), created by [ArjunNair](https://github.com/ArjunNair)
 
@@ -46,3 +50,6 @@ Thanks to [organizedgrime](https://github.com/organizedgrime) for contributing t
 
 * Improved mouse button handling, Thanks to [JLi69](https://github.com/JLi69)
 
+### Version 0.1.7
+
+* Bump glfw to 0.59.0

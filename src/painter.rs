@@ -300,7 +300,7 @@ impl Painter {
         (self.canvas_width, self.canvas_height) = (w, h);
     }
 
-    pub fn new(window: &mut glfw::Window) -> Painter {
+    pub fn new(window: &glfw::Window) -> Painter {
         let vs = compile_shader(VS_SRC, gl::VERTEX_SHADER);
         let fs = compile_shader(FS_SRC, gl::FRAGMENT_SHADER);
 

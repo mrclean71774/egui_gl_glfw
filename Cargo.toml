@@ -1,9 +1,9 @@
 [package]
 name = "egui_gl_glfw"
-version = "0.1.8"
+version = "0.1.9"
 authors = [
-    "Michael H. Phillips <mrclean71774@gmail.com>",
-    "cohaereo <lucasteal@protonmail.com>",
+  "Michael H. Phillips <mrclean71774@gmail.com>",
+  "cohaereo <lucasteal@protonmail.com>",
 ]
 edition = "2021"
 description = "OpenGL backend for egui using GLFW"
@@ -27,10 +27,10 @@ optional = true
 
 [features]
 default = [
-    "clipboard",
-    "glfw-sys",
-    "glfw-raw-window-handle-v0-6",
-    "egui-default_fonts"
+  "clipboard",
+  "glfw-sys",
+  "glfw-raw-window-handle-v0-6",
+  "egui-default_fonts",
 ]
 clipboard = ["dep:clipboard"]
 
@@ -49,7 +49,7 @@ egui-bytemuck = ["egui/bytemuck"]
 egui-callstack = ["egui/callstack"]
 egui-cint = ["egui/cint"]
 egui-color-hex = ["egui/color-hex"]
-egui-deadlock_detection =["egui/deadlock_detection"]
+egui-deadlock_detection = ["egui/deadlock_detection"]
 egui-default_fonts = ["egui/default_fonts"]
 egui-log = ["egui/log"]
 egui-mint = ["egui/mint"]

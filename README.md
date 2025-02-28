@@ -57,3 +57,8 @@ Thanks to [organizedgrime](https://github.com/organizedgrime) for contributing t
 ### Version 0.1.8
 
 * Remove glfw-vulkan feature
+
+### Version 0.1.9
+
+* Merge pull request from [ToothlessBrush](https://github.com/ToothlessBrush).
+  > Removed mut from the glfw::PWindow reference in the Painter constructor.

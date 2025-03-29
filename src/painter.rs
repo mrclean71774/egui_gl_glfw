@@ -242,6 +242,14 @@ impl UserTexture {
         assert!(y_offset + height <= self.size.1 as _);
 
         unsafe {
+            if let Some(id) = self.gl_texture_id {
+                //Bind the texture
+                gl::BindTexture(gl::TEXTURE_2D, id);
+            } else {
+                //We have not uploaded the texture to the GPU yet, and thus
+                //there should be nothing to update
+                return;
+            }
             gl::PixelStorei(gl::UNPACK_ALIGNMENT, 1);
             gl::TexParameteri(gl::TEXTURE_2D, gl::TEXTURE_SWIZZLE_A, gl::RED as _);
 

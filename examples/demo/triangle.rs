@@ -1,4 +1,4 @@
-// Draws a simple white triangle
+// Draws a triangle with a gradient texture
 // based on the example from:
 // https://github.com/brendanzab/gl-rs/blob/master/gl/examples/triangle.rs
 
@@ -111,23 +111,45 @@ fn link_program(vs: GLuint, fs: GLuint) -> GLuint {
     program
 }
 
+fn generate_texture() -> Vec<u8> {
+    let mut texture = Vec::with_capacity(256 * 256 * 256);
+    for y in 0..=255 {
+        for x in 0..=255 {
+            texture.append(&mut vec![x, y, 0]);
+        }
+    }
+    texture
+}
+
 const VS_SRC: &str = "
 #version 150
 in vec2 position;
+in vec2 tex;
+
+out vec2 tex_coord;
 
 void main() {
     gl_Position = vec4(position, 0.0, 1.0);
+    tex_coord = tex;
 }";
 
 const FS_SRC: &str = "
 #version 150
 out vec4 out_color;
 
+in vec2 tex_coord;
+
+uniform sampler2D gradient;
+
 void main() {
-    out_color = vec4(1.0, 1.0, 1.0, 1.0);
+    out_color = texture(gradient, tex_coord);
 }";
 
-static VERTEX_DATA: [GLfloat; 6] = [0.0, 0.5, 0.5, -0.5, -0.5, -0.5];
+static VERTEX_DATA: [GLfloat; 12] = [
+    -0.5, -0.5, 0.0, 0.0, //
+    0.5, -0.5, 1.0, 0.0, //
+    0.0, 0.5, 0.5, 1.0, //
+];
 
 pub struct Triangle {
     pub vs: GLuint,
@@ -135,6 +157,7 @@ pub struct Triangle {
     pub program: GLuint,
     pub vao: GLuint,
     pub vbo: GLuint,
+    pub tex: GLuint,
 }
 
 impl Triangle {
@@ -145,9 +168,11 @@ impl Triangle {
 
         let mut vao = 0;
         let mut vbo = 0;
+        let mut tex = 0;
         unsafe {
             gl::GenVertexArrays(1, &mut vao);
             gl::GenBuffers(1, &mut vbo);
+            gl::GenTextures(1, &mut tex);
         }
 
         Triangle {
@@ -156,6 +181,7 @@ impl Triangle {
             program,
             vao,
             vbo,
+            tex,
         }
     }
 
@@ -170,6 +196,21 @@ impl Triangle {
                 &VERTEX_DATA[0] as *const f32 as *const std::ffi::c_void,
                 gl::STATIC_DRAW,
             );
+
+            gl::BindTexture(gl::TEXTURE_2D, self.tex);
+            gl::TexImage2D(
+                gl::TEXTURE_2D,
+                0,
+                gl::RGB as i32,
+                256,
+                256,
+                0,
+                gl::RGB,
+                gl::UNSIGNED_BYTE,
+                generate_texture().as_ptr() as *const std::ffi::c_void,
+            );
+            gl::TexParameteri(gl::TEXTURE_2D, gl::TEXTURE_MIN_FILTER, gl::LINEAR as i32);
+            gl::TexParameteri(gl::TEXTURE_2D, gl::TEXTURE_MAG_FILTER, gl::LINEAR as i32);
         }
 
         unsafe {
@@ -190,8 +231,21 @@ impl Triangle {
                 2,
                 gl::FLOAT,
                 gl::FALSE as GLboolean,
-                0,
+                (4 * size_of::<GLfloat>()) as GLint,
                 ptr::null(),
+            );
+        }
+        let c_tex = cstr!("tex");
+        let tex_attr = unsafe { gl::GetAttribLocation(self.program, c_tex.as_ptr()) };
+        unsafe {
+            gl::EnableVertexAttribArray(tex_attr as GLuint);
+            gl::VertexAttribPointer(
+                tex_attr as GLuint,
+                2,
+                gl::FLOAT,
+                gl::FALSE as GLboolean,
+                (4 * size_of::<GLfloat>()) as GLint,
+                (2 * size_of::<GLfloat>()) as *const std::ffi::c_void,
             );
         }
 

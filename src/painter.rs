@@ -811,3 +811,21 @@ impl Painter {
         }
     }
 }
+
+impl Drop for Painter {
+    fn drop(&mut self) {
+        //When Painter is dropped, delete any allocated buffers and textures
+        unsafe {
+            gl::DeleteVertexArrays(1, &self.vertex_array);
+            gl::DeleteBuffers(1, &self.index_buffer);
+            gl::DeleteBuffers(1, &self.pos_buffer);
+            gl::DeleteBuffers(1, &self.tc_buffer);
+            gl::DeleteBuffers(1, &self.color_buffer);
+
+            let ids: Vec<egui::TextureId> = self.textures.keys().copied().collect();
+            for tex_id in ids {
+                self.free_texture(tex_id);
+            }
+        }
+    }
+}

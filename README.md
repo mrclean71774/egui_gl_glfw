@@ -62,3 +62,10 @@ Thanks to [organizedgrime](https://github.com/organizedgrime) for contributing t
 
 * Merge pull request from [ToothlessBrush](https://github.com/ToothlessBrush).
   > Removed mut from the glfw::PWindow reference in the Painter constructor.
+
+### Version 0.1.10
+
+* Merge pull request from [JLi69](https://github.com/JLi69)
+  > Fixed potential issue with textures and font rendering.
+  > Created textured quad example.
+* Add texture to the triangle example.

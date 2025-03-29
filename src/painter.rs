@@ -242,6 +242,14 @@ impl UserTexture {
         assert!(y_offset + height <= self.size.1 as _);
 
         unsafe {
+            if let Some(id) = self.gl_texture_id {
+                //Bind the texture
+                gl::BindTexture(gl::TEXTURE_2D, id);
+            } else {
+                //We have not uploaded the texture to the GPU yet, and thus
+                //there should be nothing to update
+                return;
+            }
             gl::PixelStorei(gl::UNPACK_ALIGNMENT, 1);
             gl::TexParameteri(gl::TEXTURE_2D, gl::TEXTURE_SWIZZLE_A, gl::RED as _);
 
@@ -808,6 +816,24 @@ impl Painter {
     pub fn free_texture(&mut self, tex_id: egui::TextureId) {
         if let Some(old_tex) = self.textures.remove(&tex_id) {
             old_tex.delete();
+        }
+    }
+}
+
+impl Drop for Painter {
+    fn drop(&mut self) {
+        //When Painter is dropped, delete any allocated buffers and textures
+        unsafe {
+            gl::DeleteVertexArrays(1, &self.vertex_array);
+            gl::DeleteBuffers(1, &self.index_buffer);
+            gl::DeleteBuffers(1, &self.pos_buffer);
+            gl::DeleteBuffers(1, &self.tc_buffer);
+            gl::DeleteBuffers(1, &self.color_buffer);
+
+            let ids: Vec<egui::TextureId> = self.textures.keys().copied().collect();
+            for tex_id in ids {
+                self.free_texture(tex_id);
+            }
         }
     }
 }

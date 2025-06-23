@@ -1,6 +1,6 @@
 [package]
 name = "egui_gl_glfw"
-version = "0.1.10"
+version = "0.1.11"
 authors = [
   "Michael H. Phillips <mrclean71774@gmail.com>",
   "cohaereo <lucasteal@protonmail.com>",
@@ -45,7 +45,7 @@ glfw-raw-window-handle-v0-6 = ["glfw/raw-window-handle-v0-6"]
 glfw-serde = ["glfw/serde"]
 
 # egui features
-egui-accesskit = ["egui/accesskit"]
+# egui-accesskit = ["egui/accesskit"] TODO: needs integration support
 egui-bytemuck = ["egui/bytemuck"]
 egui-callstack = ["egui/callstack"]
 egui-cint = ["egui/cint"]

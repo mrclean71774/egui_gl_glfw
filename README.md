@@ -69,3 +69,7 @@ Thanks to [organizedgrime](https://github.com/organizedgrime) for contributing t
   > Fixed potential issue with textures and font rendering.
   > Created textured quad example.
 * Add texture to the triangle example.
+
+### Version 0.1.11
+
+* Bump egui to 0.31.1

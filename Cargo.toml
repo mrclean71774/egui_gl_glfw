@@ -18,7 +18,7 @@ include = ["**/*.rs", "Cargo.toml"]
 [dependencies]
 gl = { version = "0.14" }
 glfw = { version = "0.59.0", default-features = false }
-egui = { version = "0.29.1", default-features = false }
+egui = { version = "0.31.1", default-features = false }
 
 [dependencies.clipboard]
 package = "cli-clipboard"
@@ -45,6 +45,7 @@ glfw-raw-window-handle-v0-6 = ["glfw/raw-window-handle-v0-6"]
 glfw-serde = ["glfw/serde"]
 
 # egui features
+egui-accesskit = ["egui/accesskit"]
 egui-bytemuck = ["egui/bytemuck"]
 egui-callstack = ["egui/callstack"]
 egui-cint = ["egui/cint"]
@@ -54,7 +55,6 @@ egui-default_fonts = ["egui/default_fonts"]
 egui-log = ["egui/log"]
 egui-mint = ["egui/mint"]
 egui-persistence = ["egui/persistence"]
-egui-puffin = ["egui/puffin"]
 egui-rayon = ["egui/rayon"]
 egui-serde = ["egui/serde"]
 

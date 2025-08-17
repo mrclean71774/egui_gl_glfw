@@ -11,8 +11,8 @@ pub type Result<T> = core::result::Result<T, Error>;
 
 pub trait ClipboardProvider: Sized {
     fn new() -> Result<Self>;
-    fn get_contents(&mut self) -> Result<String>;
-    fn set_contents(&mut self, contents: String) -> Result<()>;
+    fn get_text(&mut self) -> Result<String>;
+    fn set_text(&mut self, contents: String) -> Result<()>;
     fn clear(&mut self) -> Result<()>;
 }
 
@@ -26,10 +26,10 @@ impl ClipboardProvider for ClipboardContext {
             contents: Default::default(),
         })
     }
-    fn get_contents(&mut self) -> Result<String> {
+    fn get_text(&mut self) -> Result<String> {
         Ok(self.contents.clone())
     }
-    fn set_contents(&mut self, contents: String) -> Result<()> {
+    fn set_text(&mut self, contents: String) -> Result<()> {
         self.contents = contents;
         Ok(())
     }

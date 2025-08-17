@@ -1,6 +1,6 @@
 [package]
 name = "egui_gl_glfw"
-version = "0.1.11"
+version = "0.1.12"
 authors = [
   "Michael H. Phillips <mrclean71774@gmail.com>",
   "cohaereo <lucasteal@protonmail.com>",
@@ -21,8 +21,8 @@ glfw = { version = "0.59.0", default-features = false }
 egui = { version = "0.31.1", default-features = false }
 
 [dependencies.clipboard]
-package = "cli-clipboard"
-version = "0.4"
+package = "arboard"
+version = "3.6"
 optional = true
 
 [features]
@@ -33,6 +33,9 @@ default = [
   "egui-default_fonts",
 ]
 clipboard = ["dep:clipboard"]
+
+# arboard features
+arboard-wayland-data-control = ["clipboard/wayland-data-control"]
 
 # glfw features
 glfw-default = ["glfw/default"]

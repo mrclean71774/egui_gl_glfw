@@ -14,10 +14,11 @@ use egui::*;
 #[cfg(not(feature = "clipboard"))]
 mod clipboard;
 
-use clipboard::{
-    ClipboardContext, // TODO: remove
-    ClipboardProvider,
-};
+#[cfg(not(feature = "clipboard"))]
+use clipboard::{ClipboardContext, ClipboardProvider};
+
+#[cfg(feature = "clipboard")]
+use clipboard::Clipboard as ClipboardContext;
 
 pub struct EguiInputState {
     pub pointer_pos: Pos2,
@@ -140,9 +141,7 @@ pub fn handle_event(event: glfw::WindowEvent, state: &mut EguiInputState) {
                 } else if state.modifiers.command && key == egui::Key::V {
                     if let Some(clipboard_ctx) = state.clipboard.as_mut() {
                         state.input.events.push(egui::Event::Text(
-                            clipboard_ctx
-                                .get_contents()
-                                .unwrap_or_else(|_| "".to_string()),
+                            clipboard_ctx.get_text().unwrap_or_else(|_| "".to_string()),
                         ));
                     }
                 } else {
@@ -179,9 +178,7 @@ pub fn handle_event(event: glfw::WindowEvent, state: &mut EguiInputState) {
                 } else if state.modifiers.command && key == egui::Key::V {
                     if let Some(clipboard_ctx) = state.clipboard.as_mut() {
                         state.input.events.push(egui::Event::Text(
-                            clipboard_ctx
-                                .get_contents()
-                                .unwrap_or_else(|_| "".to_string()),
+                            clipboard_ctx.get_text().unwrap_or_else(|_| "".to_string()),
                         ));
                     }
                 } else {
@@ -304,7 +301,7 @@ pub fn init_clipboard() -> Option<ClipboardContext> {
 
 pub fn copy_to_clipboard(egui_state: &mut EguiInputState, copy_text: String) {
     if let Some(clipboard) = egui_state.clipboard.as_mut() {
-        let result = clipboard.set_contents(copy_text);
+        let result = clipboard.set_text(copy_text);
         if result.is_err() {
             dbg!("Unable to set clipboard content.");
         }

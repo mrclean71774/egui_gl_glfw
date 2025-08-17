@@ -78,3 +78,6 @@ Thanks to [organizedgrime](https://github.com/organizedgrime) for contributing t
 
 * Change clipboard provider to arboard. Thanks to [JLi69](https://github.com/JLi69) for the suggestion.
 * Fixed desktop scaling the example code.
+
+### Version 0.1.13
+* Fixed copying text in examples.

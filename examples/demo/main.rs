@@ -155,7 +155,7 @@ fn main() {
         //drawing calls with it.
         //Since we are custom drawing an OpenGL Triangle we don't need egui to clear the background.
 
-        let clipped_shapes = egui_ctx.tessellate(shapes, pixels_per_point);
+        let clipped_shapes = egui_ctx.tessellate(shapes, native_pixels_per_point);
         painter.paint_and_update_textures(
             native_pixels_per_point,
             &clipped_shapes,

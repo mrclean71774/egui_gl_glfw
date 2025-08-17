@@ -139,7 +139,7 @@ fn main() {
             platform_output,
             textures_delta,
             shapes,
-            pixels_per_point,
+            pixels_per_point: _,
             viewport_output: _,
         } = egui_ctx.end_pass();
 

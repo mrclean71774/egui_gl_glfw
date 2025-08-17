@@ -41,7 +41,7 @@ fn main() {
 
     gl::load_with(|symbol| window.get_proc_address(symbol) as *const _);
 
-    let mut painter = egui_backend::Painter::new(&mut window);
+    let mut painter = egui_backend::Painter::new(&window);
     let egui_ctx = egui::Context::default();
 
     let (width, height) = window.get_framebuffer_size();
@@ -154,7 +154,11 @@ fn main() {
         //Since we are custom drawing an OpenGL Triangle we don't need egui to clear the background.
 
         let clipped_shapes = egui_ctx.tessellate(shapes, pixels_per_point);
-        painter.paint_and_update_textures(1.0, &clipped_shapes, &textures_delta);
+        painter.paint_and_update_textures(
+            native_pixels_per_point,
+            &clipped_shapes,
+            &textures_delta,
+        );
 
         for (_, event) in glfw::flush_messages(&events) {
             match event {

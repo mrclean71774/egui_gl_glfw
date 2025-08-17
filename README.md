@@ -73,3 +73,8 @@ Thanks to [organizedgrime](https://github.com/organizedgrime) for contributing t
 ### Version 0.1.11
 
 * Bump egui to 0.31.1
+
+### Version 0.1.12
+
+* Change clipboard provider to arboard. Thanks to [JLi69](https://github.com/JLi69) for the suggestion.
+* Fixed desktop scaling the example code.

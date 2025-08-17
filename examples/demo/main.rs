@@ -144,8 +144,10 @@ fn main() {
         } = egui_ctx.end_pass();
 
         //Handle cut, copy text from egui
-        if !platform_output.copied_text.is_empty() {
-            egui_backend::copy_to_clipboard(&mut egui_input_state, platform_output.copied_text);
+        for command in platform_output.commands {
+            if let egui::OutputCommand::CopyText(copied_text) = command {
+                egui_backend::copy_to_clipboard(&mut egui_input_state, copied_text);
+            }
         }
 
         //Note: passing a bg_color to paint_jobs will clear any previously drawn stuff.

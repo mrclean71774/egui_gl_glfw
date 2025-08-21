@@ -46,6 +46,7 @@ fn main() {
 
     let (width, height) = window.get_framebuffer_size();
     let native_pixels_per_point = window.get_content_scale().0;
+    egui_ctx.set_pixels_per_point(native_pixels_per_point);
 
     let mut egui_input_state = egui_backend::EguiInputState::new(
         egui::RawInput {
